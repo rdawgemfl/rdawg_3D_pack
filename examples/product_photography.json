@@ -1,0 +1,207 @@
+{
+  "last_node_id": 12,
+  "last_link_id": 11,
+  "nodes": {
+    "1": {
+      "inputs": {
+        "file_path": "path/to/product/model.obj",
+        "load_texture": true,
+        "normalize": true,
+        "device": "auto",
+        "use_open3d": true
+      },
+      "class_type": "RDAWG3DLoadModel",
+      "pos": [50, 50],
+      "size": {"0": 320, "1": 180}
+    },
+    "2": {
+      "inputs": {
+        "mesh": ["1", 0],
+        "scale": 1.0,
+        "rotation_x": 0.0,
+        "rotation_y": 0.0,
+        "rotation_z": 0.0,
+        "translate_x": 0.0,
+        "translate_y": 0.0,
+        "translate_z": 0.0
+      },
+      "class_type": "RDAWG3DTransform",
+      "pos": [400, 50],
+      "size": {"0": 320, "1": 220}
+    },
+    "3": {
+      "inputs": {
+        "mesh": ["2", 0],
+        "scale": 1.0,
+        "rotation_x": 0.0,
+        "rotation_y": 45.0,
+        "rotation_z": 0.0,
+        "translate_x": 0.0,
+        "translate_y": 0.0,
+        "translate_z": 0.0
+      },
+      "class_type": "RDAWG3DTransform",
+      "pos": [400, 300],
+      "size": {"0": 320, "1": 220}
+    },
+    "4": {
+      "inputs": {
+        "mesh": ["2", 0],
+        "scale": 1.0,
+        "rotation_x": 0.0,
+        "rotation_y": 90.0,
+        "rotation_z": 0.0,
+        "translate_x": 0.0,
+        "translate_y": 0.0,
+        "translate_z": 0.0
+      },
+      "class_type": "RDAWG3DTransform",
+      "pos": [400, 550],
+      "size": {"0": 320, "1": 220}
+    },
+    "5": {
+      "inputs": {
+        "mesh": ["2", 0],
+        "width": 1024,
+        "height": 1024,
+        "background_color": "#F0F0F0",
+        "mesh_color": "#808080",
+        "use_open3d_render": true,
+        "camera_distance": 2.5,
+        "elevation": 20.0,
+        "azimuth": 0.0
+      },
+      "class_type": "RDAWG3DMeshToImage",
+      "pos": [750, 50],
+      "size": {"0": 380, "1": 280}
+    },
+    "6": {
+      "inputs": {
+        "mesh": ["3", 0],
+        "width": 1024,
+        "height": 1024,
+        "background_color": "#F0F0F0",
+        "mesh_color": "#808080",
+        "use_open3d_render": true,
+        "camera_distance": 2.5,
+        "elevation": 20.0,
+        "azimuth": 0.0
+      },
+      "class_type": "RDAWG3DMeshToImage",
+      "pos": [750, 300],
+      "size": {"0": 380, "1": 280}
+    },
+    "7": {
+      "inputs": {
+        "mesh": ["4", 0],
+        "width": 1024,
+        "height": 1024,
+        "background_color": "#F0F0F0",
+        "mesh_color": "#808080",
+        "use_open3d_render": true,
+        "camera_distance": 2.5,
+        "elevation": 20.0,
+        "azimuth": 0.0
+      },
+      "class_type": "RDAWG3DMeshToImage",
+      "pos": [750, 550],
+      "size": {"0": 380, "1": 280}
+    },
+    "8": {
+      "inputs": {
+        "images": ["5", 0],
+        "filename_prefix": "product_front"
+      },
+      "class_type": "SaveImage",
+      "pos": [1150, 50],
+      "size": {"0": 210, "1": 26}
+    },
+    "9": {
+      "inputs": {
+        "images": ["6", 0],
+        "filename_prefix": "product_45deg"
+      },
+      "class_type": "SaveImage",
+      "pos": [1150, 300],
+      "size": {"0": 210, "1": 26}
+    },
+    "10": {
+      "inputs": {
+        "images": ["7", 0],
+        "filename_prefix": "product_side"
+      },
+      "class_type": "SaveImage",
+      "pos": [1150, 550],
+      "size": {"0": 210, "1": 26}
+    },
+    "11": {
+      "inputs": {
+        "image1": ["5", 0],
+        "image2": ["6", 0],
+        "image3": ["7", 0]
+      },
+      "class_type": "ImageBatch",
+      "pos": [1400, 300],
+      "size": {"0": 210, "1": 26}
+    },
+    "12": {
+      "inputs": {
+        "images": ["11", 0],
+        "filename_prefix": "product_comparison"
+      },
+      "class_type": "SaveImage",
+      "pos": [1650, 300],
+      "size": {"0": 210, "1": 26}
+    }
+  },
+  "links": [
+    [1, 0, 2, 0],
+    [2, 0, 3, 0],
+    [2, 0, 4, 0],
+    [2, 0, 5, 0],
+    [3, 0, 6, 0],
+    [4, 0, 7, 0],
+    [5, 0, 8, 0],
+    [6, 0, 9, 0],
+    [7, 0, 10, 0],
+    [5, 0, 11, 0],
+    [6, 0, 11, 1],
+    [7, 0, 11, 2],
+    [11, 0, 12, 0]
+  ],
+  "groups": [
+    {
+      "title": "📸 Product Photography Setup",
+      "bounding": [30, 20, 1880, 800],
+      "color": "#2A4B7C",
+      "font_size": 24
+    },
+    {
+      "title": "Load Model",
+      "bounding": [40, 40, 340, 200],
+      "color": "#4A5568",
+      "font_size": 16
+    },
+    {
+      "title": "Multiple Views",
+      "bounding": [390, 40, 340, 750],
+      "color": "#4A5568",
+      "font_size": 16
+    },
+    {
+      "title": "Render Views",
+      "bounding": [740, 40, 400, 750],
+      "color": "#4A5568",
+      "font_size": 16
+    },
+    {
+      "title": "Export",
+      "bounding": [1140, 40, 740, 750],
+      "color": "#4A5568",
+      "font_size": 16
+    }
+  ],
+  "config": {},
+  "extra": {},
+  "version": 0.4
+}

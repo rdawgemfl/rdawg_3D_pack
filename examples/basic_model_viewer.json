@@ -1,0 +1,83 @@
+{
+  "last_node_id": 5,
+  "last_link_id": 4,
+  "nodes": {
+    "1": {
+      "inputs": {
+        "file_path": "path/to/your/model.obj",
+        "load_texture": true,
+        "normalize": true,
+        "device": "auto",
+        "use_open3d": true
+      },
+      "class_type": "RDAWG3DLoadModel",
+      "pos": [50, 50],
+      "size": {"0": 320, "1": 180}
+    },
+    "2": {
+      "inputs": {
+        "mesh": ["1", 0],
+        "scale": 1.0,
+        "rotation_x": 0.0,
+        "rotation_y": 45.0,
+        "rotation_z": 0.0,
+        "translate_x": 0.0,
+        "translate_y": 0.0,
+        "translate_z": 0.0
+      },
+      "class_type": "RDAWG3DTransform",
+      "pos": [400, 50],
+      "size": {"0": 320, "1": 220}
+    },
+    "3": {
+      "inputs": {
+        "mesh": ["2", 0],
+        "width": 1024,
+        "height": 1024,
+        "background_color": "#FFFFFF",
+        "mesh_color": "#000000",
+        "use_open3d_render": true,
+        "camera_distance": 2.0,
+        "elevation": 0.0,
+        "azimuth": 0.0
+      },
+      "class_type": "RDAWG3DMeshToImage",
+      "pos": [750, 50],
+      "size": {"0": 380, "1": 280}
+    },
+    "4": {
+      "inputs": {
+        "images": ["3", 0],
+        "filename_prefix": "RDAWG_3D_Render"
+      },
+      "class_type": "SaveImage",
+      "pos": [1150, 50],
+      "size": {"0": 210, "1": 26}
+    },
+    "5": {
+      "inputs": {
+        "text": ["1", 1]
+      },
+      "class_type": "Text Display",
+      "pos": [400, 300],
+      "size": {"0": 420, "1": 80}
+    }
+  },
+  "links": [
+    [1, 0, 2, 0],
+    [2, 0, 3, 0],
+    [3, 0, 4, 0],
+    [1, 1, 5, 0]
+  ],
+  "groups": [
+    {
+      "title": "🔷 Basic 3D Model Viewer",
+      "bounding": [30, 20, 1350, 400],
+      "color": "#3A4B5C",
+      "font_size": 24
+    }
+  ],
+  "config": {},
+  "extra": {},
+  "version": 0.4
+}

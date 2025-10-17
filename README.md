@@ -53,6 +53,29 @@ pip install -e .[neural]
 pip install -e .[reconstruction]
 ```
 
+### Open3D Installation (Recommended)
+For the best 3D processing experience, install Open3D 0.19.0 manually:
+
+**🚀 Automatic Download:**
+```bash
+python download_open3d.py
+```
+
+**📦 Manual Download:**
+Download wheels from: https://github.com/isl-org/Open3D/releases/tag/v0.19.0
+
+**Windows Installation:**
+```bash
+# Python 3.12
+pip install open3d-0.19.0-cp312-cp312-win_amd64.whl
+
+# Python 3.11
+pip install open3d-0.19.0-cp311-cp311-win_amd64.whl
+
+# Python 3.10
+pip install open3d-0.19.0-cp310-cp310-win_amd64.whl
+```
+
 ## 🎮 Usage
 
 ### 🆕 **Important: 3D Models Required**

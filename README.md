@@ -55,9 +55,23 @@ pip install -e .[reconstruction]
 
 ## 🎮 Usage
 
+### 🆕 **Important: 3D Models Required**
+RDAWG 3D Pack works with **3D geometric models** (.obj, .stl, .ply files), **NOT AI models**!
+
+**📚 Quick Start:**
+- **Built-in test models**: Run `python create_test_models.py` to generate test_cube.obj, test_sphere.obj, test_pyramid.obj
+- **Download models**: See [docs/3D_MODELS_GUIDE.md](docs/3D_MODELS_GUIDE.md) for where to download free 3D models
+- **Supported formats**: OBJ, STL, PLY, GLTF files
+
+**🌐 Where to Get 3D Models:**
+- **Sketchfab** (free section) - High quality models
+- **Thingiverse** - 3D printable models
+- **Free3D** - Various categories
+- **CGTrader** - Mixed free/paid models
+
 ### Basic 3D Model Loading
-1. Add **🔷 Load 3D Model (RDAWG)** node
-2. Specify your 3D file path
+1. Add **🔷 Load 3D Model (RDAWG+Open3D)** node
+2. Specify your 3D file path (e.g., `test_cube.obj` or downloaded models)
 3. Configure loading options (texture, normalization, device)
 4. Connect to downstream processing nodes
 

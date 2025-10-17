@@ -155,11 +155,18 @@ Load Multiple Models → Batch Transform → Batch Render → Image Sequence
 - Python 3.8+
 - 8GB+ VRAM (for large models)
 
-**Recommended:**
+**Recommended Setup (Optimal Configuration):**
+- **Python 3.11** (best Open3D compatibility)
 - RTX 30-series or newer GPU
 - 16GB+ VRAM
 - Latest GPU drivers
 - SSD storage
+
+**🎯 Why Python 3.11?**
+- Perfect Open3D 0.19.0 wheel support
+- Excellent PyTorch CUDA integration
+- Most stable for 3D processing libraries
+- Better performance than Python 3.13 for scientific computing
 
 ## 🤝 Contributing
 

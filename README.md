@@ -29,16 +29,35 @@ A comprehensive, next-generation 3D processing toolkit specifically optimized fo
 
 ## 📦 Installation
 
-### Automatic Installation (Recommended)
-1. Use ComfyUI Manager to install `rdawg-3d-pack-cu128-pytorch-2.9.0`
-2. Restart ComfyUI
+### ⚠️ **Important: Install PyTorch CUDA First!**
+RDAWG 3D Pack requires **PyTorch with CUDA support** for 3D processing:
+
+```bash
+# Install PyTorch 2.9.0 with CUDA 12.8 support
+pip install torch==2.9.0+cu128 torchvision==0.24.0+cu128 torchaudio==2.9.0+cu128 --index-url https://download.pytorch.org/whl/cu128
+```
+
+### 🚀 **Recommended Installation Method**
+```bash
+cd ComfyUI/custom_nodes
+git clone https://github.com/rdawgemfl/rdawg-3d-pack-cu128-pytorch-2.9.0
+cd rdawg-3d-pack-cu128-pytorch-2.9.0
+
+# Run the automated installer (installs CUDA PyTorch + dependencies)
+python install.py
+```
 
 ### Manual Installation
 ```bash
 cd ComfyUI/custom_nodes
 git clone https://github.com/rdawgemfl/rdawg-3d-pack-cu128-pytorch-2.9.0
 cd rdawg-3d-pack-cu128-pytorch-2.9.0
-pip install -r requirements.txt
+
+# 1. Install PyTorch CUDA first (required!)
+pip install torch==2.9.0+cu128 torchvision==0.24.0+cu128 torchaudio==2.9.0+cu128 --index-url https://download.pytorch.org/whl/cu128
+
+# 2. Install the package
+pip install -e .
 ```
 
 ### Optional Dependencies

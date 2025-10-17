@@ -18,6 +18,37 @@ def check_python_version():
     print(f"✅ Python {version.major}.{version.minor}.{version.micro} detected")
     return True
 
+def install_pytorch_cuda():
+    """Install PyTorch with CUDA 12.8 support"""
+    print("🔧 Installing PyTorch 2.9.0 with CUDA 12.8 support...")
+
+    # Install PyTorch CUDA version from PyTorch index
+    pytorch_cmd = [
+        sys.executable, "-m", "pip", "install",
+        "torch==2.9.0+cu128",
+        "torchvision==0.24.0+cu128",
+        "torchaudio==2.9.0+cu128",
+        "--index-url", "https://download.pytorch.org/whl/cu128"
+    ]
+
+    try:
+        print("  Downloading PyTorch CUDA wheels (this may take a few minutes)...")
+        result = subprocess.run(pytorch_cmd, capture_output=True, text=True, timeout=600)
+
+        if result.returncode == 0:
+            print("  ✅ PyTorch 2.9.0+cu128 installed successfully")
+            return True
+        else:
+            print(f"  ❌ Failed to install PyTorch CUDA: {result.stderr}")
+            return False
+
+    except subprocess.TimeoutExpired:
+        print("  ⏰ PyTorch installation timed out")
+        return False
+    except Exception as e:
+        print(f"  ❌ Error installing PyTorch: {str(e)}")
+        return False
+
 def check_pytorch_version():
     """Check if PyTorch version is compatible"""
     try:
@@ -29,13 +60,14 @@ def check_pytorch_version():
         if torch.cuda.is_available():
             print(f"✅ CUDA {torch.version.cuda} available")
             print(f"✅ GPU: {torch.cuda.get_device_name(0)}")
+            return True
         else:
-            print("⚠️  Warning: CUDA not available, CPU-only mode")
+            print("⚠️  Warning: CUDA not available, installing CUDA version...")
+            return install_pytorch_cuda()
 
-        return True
     except ImportError:
-        print("❌ Error: PyTorch not found")
-        return False
+        print("❌ PyTorch not found, installing CUDA version...")
+        return install_pytorch_cuda()
 
 def install_core_dependencies():
     """Install core dependencies"""

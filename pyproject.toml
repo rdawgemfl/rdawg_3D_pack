@@ -33,6 +33,7 @@ classifiers = [
 
 dependencies = [
     # Core dependencies with flexible versions for PyTorch 2.9.0 compatibility
+    # PyTorch CUDA 12.8 support - install from PyTorch index
     "torch>=2.9.0",
     "torchvision>=0.24.0",
     "torchaudio>=2.9.0",

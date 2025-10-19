@@ -1,36 +1,165 @@
 {
   "last_node_id": 10,
   "last_link_id": 9,
-  "nodes": {
-    "1": {
-      "inputs": {
-        "file_path": "custom_nodes/rdawg_3D_pack/test_models/test_high_poly.obj",
-        "load_texture": true,
-        "normalize": true,
-        "device": "auto"
-      },
+  "nodes": [
+    {
+      "id": 1,
       "type": "RDAWG3DLoadModel",
-      "pos": [50, 50]
-    },
-    "2": {
-      "inputs": {
-        "mesh": ["1", 0],
-        "compute_volume": true,
-        "compute_surface_area": true,
-        "compute_quality_metrics": true,
-        "compute_topology": true
+      "pos": [50, 50],
+      "size": [210, 46],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "file_path",
+          "type": "STRING",
+          "widget": { "name": "file_path" },
+          "link": null
+        },
+        {
+          "name": "load_texture",
+          "type": "BOOLEAN",
+          "widget": { "name": "load_texture" },
+          "link": null
+        },
+        {
+          "name": "normalize",
+          "type": "BOOLEAN",
+          "widget": { "name": "normalize" },
+          "link": null
+        },
+        {
+          "name": "device",
+          "type": "STRING",
+          "widget": { "name": "device" },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MESH",
+          "type": "MESH",
+          "links": [1, 2, 3, 8],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "cnr_id": "rdawg_3D_pack",
+        "ver": "1.0.0",
+        "Node name for S&R": "RDAWG3DLoadModel",
+        "aux_id": "rdawgemfl/rdawg_3D_pack"
       },
+      "widgets_values": [
+        "custom_nodes/rdawg_3D_pack/test_models/test_high_poly.obj",
+        true,
+        true,
+        "auto"
+      ]
+    },
+    {
+      "id": 2,
       "type": "RDAWG3DAnalyzeMesh",
-      "pos": [350, 50]
-    },
-    "3": {
-      "inputs": {
-        "mesh": ["1", 0],
-        "box_type": "axis_aligned",
-        "create_visualization": true
+      "pos": [350, 50],
+      "size": [210, 46],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "mesh",
+          "type": "MESH",
+          "link": 1
+        },
+        {
+          "name": "compute_volume",
+          "type": "BOOLEAN",
+          "widget": { "name": "compute_volume" },
+          "link": null
+        },
+        {
+          "name": "compute_surface_area",
+          "type": "BOOLEAN",
+          "widget": { "name": "compute_surface_area" },
+          "link": null
+        },
+        {
+          "name": "compute_quality_metrics",
+          "type": "BOOLEAN",
+          "widget": { "name": "compute_quality_metrics" },
+          "link": null
+        },
+        {
+          "name": "compute_topology",
+          "type": "BOOLEAN",
+          "widget": { "name": "compute_topology" },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MESH",
+          "type": "MESH",
+          "links": null,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "cnr_id": "rdawg_3D_pack",
+        "ver": "1.0.0",
+        "Node name for S&R": "RDAWG3DAnalyzeMesh",
+        "aux_id": "rdawgemfl/rdawg_3D_pack"
       },
+      "widgets_values": [true, true, true, true]
+    },
+    {
+      "id": 3,
       "type": "RDAWG3DBoundingBox",
-      "pos": [350, 250]
+      "pos": [350, 250],
+      "size": [210, 46],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "mesh",
+          "type": "MESH",
+          "link": 1
+        },
+        {
+          "name": "box_type",
+          "type": "STRING",
+          "widget": { "name": "box_type" },
+          "link": null
+        },
+        {
+          "name": "create_visualization",
+          "type": "BOOLEAN",
+          "widget": { "name": "create_visualization" },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MESH",
+          "type": "MESH",
+          "links": null,
+          "slot_index": 0
+        },
+        {
+          "name": "BBOX",
+          "type": "BBOX",
+          "links": [6],
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "cnr_id": "rdawg_3D_pack",
+        "ver": "1.0.0",
+        "Node name for S&R": "RDAWG3DBoundingBox",
+        "aux_id": "rdawgemfl/rdawg_3D_pack"
+      },
+      "widgets_values": ["axis_aligned", true]
     },
     "4": {
       "inputs": {

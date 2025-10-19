@@ -152,10 +152,40 @@ def install_neural_rendering():
         "transformers>=4.35.0",
         "diffusers>=0.24.0",
         "accelerate>=0.24.0",
-        "xformers>=0.0.32",
     ]
 
-    return install_packages(packages)
+    if not install_packages(packages):
+        return False
+
+    # Build xformers from source
+    return build_xformers()
+
+def build_xformers():
+    """Build xformers from source for CUDA compatibility"""
+    print("🔧 Building xformers from source for CUDA 12.8 compatibility...")
+
+    try:
+        # Import the build script
+        import build_xformers as xformers_builder
+        return xformers_builder.main()
+    except ImportError:
+        print("  ⚠️  xformers build script not found, trying manual build...")
+
+        # Manual fallback
+        try:
+            result = subprocess.run([
+                sys.executable, "build_xformers.py"
+            ], capture_output=True, text=True, timeout=1800)
+
+            if result.returncode == 0:
+                print("  ✅ xformers built successfully")
+                return True
+            else:
+                print(f"  ❌ xformers build failed: {result.stderr}")
+                return False
+        except Exception as e:
+            print(f"  ❌ Error building xformers: {str(e)}")
+            return False
 
 def install_reconstruction():
     """Install 3D reconstruction dependencies"""

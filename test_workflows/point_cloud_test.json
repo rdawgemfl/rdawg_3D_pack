@@ -1,0 +1,188 @@
+{
+  "last_node_id": 14,
+  "last_link_id": 13,
+  "nodes": {
+    "1": {
+      "inputs": {
+        "file_path": "custom_nodes/rdawg_3D_pack/test_models/test_sphere.obj",
+        "load_texture": true,
+        "normalize": true,
+        "device": "auto"
+      },
+      "class_type": "RDAWG3DLoadModel",
+      "pos": [50, 50]
+    },
+    "2": {
+      "inputs": {
+        "mesh": ["1", 0],
+        "num_points": 2000,
+        "include_normals": true,
+        "include_colors": false,
+        "method": "poisson"
+      },
+      "class_type": "RDAWG3DMeshToPointCloud",
+      "pos": [350, 50]
+    },
+    "3": {
+      "inputs": {
+        "point_cloud": ["2", 0],
+        "method": "voxel",
+        "voxel_size": 0.02,
+        "target_points": 1000
+      },
+      "class_type": "RDAWG3DDownsamplePointCloud",
+      "pos": [650, 50]
+    },
+    "4": {
+      "inputs": {
+        "point_cloud": ["3", 0],
+        "method": "poisson",
+        "depth": 8,
+        "alpha": 0.05,
+        "radii": "0.01,0.02,0.04"
+      },
+      "class_type": "RDAWG3DPointCloudToMesh",
+      "pos": [950, 50]
+    },
+    "5": {
+      "inputs": {
+        "mesh": ["4", 0],
+        "width": 512,
+        "height": 512,
+        "background_color": "#000000",
+        "mesh_color": "#FF6B6B",
+        "camera_distance": 2.0,
+        "elevation": 20.0,
+        "azimuth": 45.0
+      },
+      "class_type": "RDAWG3DMeshToImage",
+      "pos": [1250, 50]
+    },
+    "6": {
+      "inputs": {
+        "images": ["5", 0],
+        "filename_prefix": "RDAWG_pointcloud_reconstruction"
+      },
+      "class_type": "SaveImage",
+      "pos": [1550, 50]
+    },
+    "7": {
+      "inputs": {
+        "file_path": "custom_nodes/rdawg_3D_pack/test_models/test_sphere_points.ply",
+        "estimate_normals": true,
+        "device": "auto"
+      },
+      "class_type": "RDAWG3DLoadPointCloud",
+      "pos": [50, 250]
+    },
+    "8": {
+      "inputs": {
+        "point_cloud": ["7", 0],
+        "method": "statistical",
+        "nb_neighbors": 20,
+        "std_ratio": 2.0,
+        "radius": 0.05,
+        "min_points": 10
+      },
+      "class_type": "RDAWG3DRemoveOutliers",
+      "pos": [350, 250]
+    },
+    "9": {
+      "inputs": {
+        "point_cloud": ["8", 0],
+        "method": "poisson",
+        "depth": 9,
+        "alpha": 0.03,
+        "radii": "0.005,0.01,0.02"
+      },
+      "class_type": "RDAWG3DPointCloudToMesh",
+      "pos": [650, 250]
+    },
+    "10": {
+      "inputs": {
+        "mesh": ["9", 0],
+        "width": 512,
+        "height": 512,
+        "background_color": "#0a0a0a",
+        "mesh_color": "#4ECDC4",
+        "camera_distance": 2.5,
+        "elevation": 30.0,
+        "azimuth": 60.0
+      },
+      "class_type": "RDAWG3DMeshToImage",
+      "pos": [950, 250]
+    },
+    "11": {
+      "inputs": {
+        "images": ["10", 0],
+        "filename_prefix": "RDAWG_pointcloud_cleaned"
+      },
+      "class_type": "SaveImage",
+      "pos": [1250, 250]
+    },
+    "12": {
+      "inputs": {
+        "point_cloud": ["3", 0],
+        "scale": 1.5,
+        "rotation_x": 30.0,
+        "rotation_y": 45.0,
+        "rotation_z": 15.0,
+        "translate_x": 0.2,
+        "translate_y": 0.1,
+        "translate_z": 0.0
+      },
+      "class_type": "RDAWG3DTransformPointCloud",
+      "pos": [650, 450]
+    },
+    "13": {
+      "inputs": {
+        "point_cloud": ["12", 0],
+        "method": "alpha_shape",
+        "depth": 8,
+        "alpha": 0.1,
+        "radii": "0.02,0.04,0.08"
+      },
+      "class_type": "RDAWG3DPointCloudToMesh",
+      "pos": [950, 450]
+    },
+    "14": {
+      "inputs": {
+        "mesh": ["13", 0],
+        "width": 512,
+        "height": 512,
+        "background_color": "#1a1a1a",
+        "mesh_color": "#FFD93D",
+        "camera_distance": 2.0,
+        "elevation": 25.0,
+        "azimuth": 90.0
+      },
+      "class_type": "RDAWG3DMeshToImage",
+      "pos": [1250, 450]
+    }
+  },
+  "links": [
+    [1, 0, 2, 0],
+    [2, 0, 3, 0],
+    [3, 0, 4, 0],
+    [4, 0, 5, 0],
+    [5, 0, 6, 0],
+    [7, 0, 8, 0],
+    [8, 0, 9, 0],
+    [9, 0, 10, 0],
+    [10, 0, 11, 0],
+    [3, 0, 12, 0],
+    [12, 0, 13, 0],
+    [13, 0, 14, 0]
+  ],
+  "groups": [
+    {
+      "title": "Point Cloud Processing Test",
+      "bounding": [30, 10, 1570, 550],
+      "color": "#D4773F",
+      "font_size": 24
+    }
+  ],
+  "config": {},
+  "extra": {},
+  "version": 0.4
+}

@@ -1,0 +1,311 @@
+{
+  "last_node_id": 25,
+  "last_link_id": 24,
+  "nodes": {
+    "1": {
+      "inputs": {
+        "file_path": "custom_nodes/rdawg_3D_pack/test_models/test_high_poly.obj",
+        "load_texture": true,
+        "normalize": true,
+        "device": "auto"
+      },
+      "class_type": "RDAWG3DLoadModel",
+      "pos": [50, 50]
+    },
+    "2": {
+      "inputs": {
+        "mesh": ["1", 0],
+        "target_triangles": 1000,
+        "preserve_boundaries": true,
+        "method": "quadric"
+      },
+      "class_type": "RDAWG3DSimplifyMesh",
+      "pos": [350, 50]
+    },
+    "3": {
+      "inputs": {
+        "mesh": ["2", 0],
+        "iterations": 3,
+        "lambda_factor": 0.5,
+        "method": "taubin"
+      },
+      "class_type": "RDAWG3DSmoothMesh",
+      "pos": [650, 50]
+    },
+    "4": {
+      "inputs": {
+        "mesh": ["3", 0],
+        "width": 512,
+        "height": 512,
+        "background_color": "#000000",
+        "mesh_color": "#FF6B6B",
+        "camera_distance": 2.0,
+        "elevation": 20.0,
+        "azimuth": 45.0
+      },
+      "class_type": "RDAWG3DMeshToImage",
+      "pos": [950, 50]
+    },
+    "5": {
+      "inputs": {
+        "images": ["4", 0],
+        "filename_prefix": "RDAWG_pipeline_processed"
+      },
+      "class_type": "SaveImage",
+      "pos": [1250, 50]
+    },
+    "6": {
+      "inputs": {
+        "mesh": ["3", 0],
+        "num_points": 3000,
+        "include_normals": true,
+        "include_colors": false,
+        "method": "poisson"
+      },
+      "class_type": "RDAWG3DMeshToPointCloud",
+      "pos": [350, 200]
+    },
+    "7": {
+      "inputs": {
+        "point_cloud": ["6", 0],
+        "method": "statistical",
+        "nb_neighbors": 20,
+        "std_ratio": 2.0,
+        "radius": 0.05,
+        "min_points": 10
+      },
+      "class_type": "RDAWG3DRemoveOutliers",
+      "pos": [650, 200]
+    },
+    "8": {
+      "inputs": {
+        "point_cloud": ["7", 0],
+        "method": "voxel",
+        "voxel_size": 0.015,
+        "target_points": 1500
+      },
+      "class_type": "RDAWG3DDownsamplePointCloud",
+      "pos": [950, 200]
+    },
+    "9": {
+      "inputs": {
+        "point_cloud": ["8", 0],
+        "method": "poisson",
+        "depth": 8,
+        "alpha": 0.05,
+        "radii": "0.01,0.02,0.04"
+      },
+      "class_type": "RDAWG3DPointCloudToMesh",
+      "pos": [1250, 200]
+    },
+    "10": {
+      "inputs": {
+        "mesh": ["9", 0],
+        "width": 512,
+        "height": 512,
+        "background_color": "#0a0a0a",
+        "mesh_color": "#4ECDC4",
+        "camera_distance": 2.5,
+        "elevation": 30.0,
+        "azimuth": 60.0
+      },
+      "class_type": "RDAWG3DMeshToImage",
+      "pos": [1550, 200]
+    },
+    "11": {
+      "inputs": {
+        "images": ["10", 0],
+        "filename_prefix": "RDAWG_pipeline_reconstructed"
+      },
+      "class_type": "SaveImage",
+      "pos": [1850, 200]
+    },
+    "12": {
+      "inputs": {
+        "mesh": ["9", 0],
+        "compute_volume": true,
+        "compute_surface_area": true,
+        "compute_quality_metrics": true,
+        "compute_topology": true
+      },
+      "class_type": "RDAWG3DAnalyzeMesh",
+      "pos": [350, 350]
+    },
+    "13": {
+      "inputs": {
+        "mesh": ["9", 0],
+        "box_type": "oriented",
+        "create_visualization": true
+      },
+      "class_type": "RDAWG3DBoundingBox",
+      "pos": [650, 350]
+    },
+    "14": {
+      "inputs": {
+        "mesh": ["9", 0],
+        "feature_type": "mean",
+        "radius": 0.1
+      },
+      "class_type": "RDAWG3DExtractFeatures",
+      "pos": [950, 350]
+    },
+    "15": {
+      "inputs": {
+        "mesh": ["13", 1],
+        "width": 512,
+        "height": 512,
+        "background_color": "#1a1a1a",
+        "mesh_color": "#FFD93D",
+        "camera_distance": 2.0,
+        "elevation": 25.0,
+        "azimuth": 90.0
+      },
+      "class_type": "RDAWG3DMeshToImage",
+      "pos": [1250, 350]
+    },
+    "16": {
+      "inputs": {
+        "images": ["15", 0],
+        "filename_prefix": "RDAWG_pipeline_analysis"
+      },
+      "class_type": "SaveImage",
+      "pos": [1550, 350]
+    },
+    "17": {
+      "inputs": {
+        "mesh": ["9", 0],
+        "scale": 1.2,
+        "rotation_x": 15.0,
+        "rotation_y": 30.0,
+        "rotation_z": 45.0,
+        "translate_x": 0.0,
+        "translate_y": 0.0,
+        "translate_z": 0.0
+      },
+      "class_type": "RDAWG3DTransform",
+      "pos": [650, 500]
+    },
+    "18": {
+      "inputs": {
+        "mesh": ["17", 0],
+        "width": 512,
+        "height": 512,
+        "background_color": "#0f0f0f",
+        "mesh_color": "#6BCF7F",
+        "camera_distance": 2.0,
+        "elevation": 35.0,
+        "azimuth": 120.0
+      },
+      "class_type": "RDAWG3DMeshToImage",
+      "pos": [950, 500]
+    },
+    "19": {
+      "inputs": {
+        "images": ["18", 0],
+        "filename_prefix": "RDAWG_pipeline_transformed"
+      },
+      "class_type": "SaveImage",
+      "pos": [1250, 500]
+    },
+    "20": {
+      "inputs": {
+        "vertices": [-0.5, -0.5, 0.0, 0.5, -0.5, 0.0, 0.0, 0.5, 0.0, -0.5, 0.5, 0.0],
+        "faces": [0, 1, 2, 0, 2, 3],
+        "device": "auto"
+      },
+      "class_type": "RDAWG3DCreateMesh",
+      "pos": [50, 350]
+    },
+    "21": {
+      "inputs": {
+        "mesh": ["20", 0],
+        "width": 256,
+        "height": 256,
+        "background_color": "#2a2a2a",
+        "mesh_color": "#E77E95",
+        "camera_distance": 2.0,
+        "elevation": 45.0,
+        "azimuth": 180.0
+      },
+      "class_type": "RDAWG3DMeshToImage",
+      "pos": [350, 500]
+    },
+    "22": {
+      "inputs": {
+        "images": ["21", 0],
+        "filename_prefix": "RDAWG_pipeline_created"
+      },
+      "class_type": "SaveImage",
+      "pos": [650, 650]
+    },
+    "23": {
+      "inputs": {
+        "mesh_a": ["9", 0],
+        "distance_type": "mesh_to_mesh",
+        "mesh_b": ["17", 0]
+      },
+      "class_type": "RDAWG3DComputeDistance",
+      "pos": [1250, 500]
+    },
+    "24": {
+      "inputs": {
+        "mesh": ["3", 0],
+        "target_triangles": 500,
+        "preserve_boundaries": true,
+        "method": "quadric"
+      },
+      "class_type": "RDAWG3DSimplifyMesh",
+      "pos": [650, 650]
+    },
+    "25": {
+      "inputs": {
+        "mesh": ["24", 0],
+        "width": 256,
+        "height": 256,
+        "background_color": "#3a3a3a",
+        "mesh_color": "#95A5E7",
+        "camera_distance": 2.0,
+        "elevation": 60.0,
+        "azimuth": 270.0
+      },
+      "class_type": "RDAWG3DMeshToImage",
+      "pos": [950, 650]
+    }
+  },
+  "links": [
+    [1, 0, 2, 0],
+    [2, 0, 3, 0],
+    [3, 0, 4, 0],
+    [4, 0, 5, 0],
+    [3, 0, 6, 0],
+    [6, 0, 7, 0],
+    [7, 0, 8, 0],
+    [8, 0, 9, 0],
+    [9, 0, 10, 0],
+    [10, 0, 11, 0],
+    [9, 0, 12, 0],
+    [9, 0, 13, 0],
+    [9, 0, 14, 0],
+    [13, 1, 15, 0],
+    [15, 0, 16, 0],
+    [9, 0, 17, 0],
+    [17, 0, 18, 0],
+    [18, 0, 19, 0],
+    [20, 0, 21, 0],
+    [21, 0, 22, 0],
+    [17, 0, 23, 1],
+    [3, 0, 24, 0],
+    [24, 0, 25, 0]
+  ],
+  "groups": [
+    {
+      "title": "Complete RDAWG 3D Pipeline Test",
+      "bounding": [30, 10, 1870, 750],
+      "color": "#FF8C42",
+      "font_size": 24
+    }
+  ],
+  "config": {},
+  "extra": {},
+  "version": 0.4
+}

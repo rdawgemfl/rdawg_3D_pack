@@ -1,0 +1,129 @@
+{
+  "last_node_id": 10,
+  "last_link_id": 9,
+  "nodes": {
+    "1": {
+      "inputs": {
+        "file_path": "custom_nodes/rdawg_3D_pack/test_models/test_high_poly.obj",
+        "load_texture": true,
+        "normalize": true,
+        "device": "auto"
+      },
+      "class_type": "RDAWG3DLoadModel",
+      "pos": [50, 50]
+    },
+    "2": {
+      "inputs": {
+        "mesh": ["1", 0],
+        "compute_volume": true,
+        "compute_surface_area": true,
+        "compute_quality_metrics": true,
+        "compute_topology": true
+      },
+      "class_type": "RDAWG3DAnalyzeMesh",
+      "pos": [350, 50]
+    },
+    "3": {
+      "inputs": {
+        "mesh": ["1", 0],
+        "box_type": "axis_aligned",
+        "create_visualization": true
+      },
+      "class_type": "RDAWG3DBoundingBox",
+      "pos": [350, 250]
+    },
+    "4": {
+      "inputs": {
+        "mesh": ["1", 0],
+        "width": 512,
+        "height": 512,
+        "background_color": "#000000",
+        "mesh_color": "#FF6B6B",
+        "camera_distance": 2.0,
+        "elevation": 20.0,
+        "azimuth": 45.0
+      },
+      "class_type": "RDAWG3DMeshToImage",
+      "pos": [650, 50]
+    },
+    "5": {
+      "inputs": {
+        "images": ["4", 0],
+        "filename_prefix": "RDAWG_analysis_original"
+      },
+      "class_type": "SaveImage",
+      "pos": [950, 50]
+    },
+    "6": {
+      "inputs": {
+        "mesh": ["3", 1],
+        "width": 512,
+        "height": 512,
+        "background_color": "#0a0a0a",
+        "mesh_color": "#4ECDC4",
+        "camera_distance": 2.5,
+        "elevation": 30.0,
+        "azimuth": 60.0
+      },
+      "class_type": "RDAWG3DMeshToImage",
+      "pos": [650, 250]
+    },
+    "7": {
+      "inputs": {
+        "images": ["6", 0],
+        "filename_prefix": "RDAWG_analysis_bbox"
+      },
+      "class_type": "SaveImage",
+      "pos": [950, 250]
+    },
+    "8": {
+      "inputs": {
+        "mesh": ["1", 0],
+        "feature_type": "vertex_curvature",
+        "radius": 0.1
+      },
+      "class_type": "RDAWG3DExtractFeatures",
+      "pos": [350, 450]
+    },
+    "9": {
+      "inputs": {
+        "file_path": "custom_nodes/rdawg_3D_pack/test_models/test_cube.obj",
+        "load_texture": true,
+        "normalize": true,
+        "device": "auto"
+      },
+      "class_type": "RDAWG3DLoadModel",
+      "pos": [50, 350]
+    },
+    "10": {
+      "inputs": {
+        "mesh_a": ["1", 0],
+        "distance_type": "self_hausdorff",
+        "mesh_b": ["9", 0]
+      },
+      "class_type": "RDAWG3DComputeDistance",
+      "pos": [650, 450]
+    }
+  },
+  "links": [
+    [1, 0, 2, 0],
+    [1, 0, 3, 0],
+    [1, 0, 4, 0],
+    [4, 0, 5, 0],
+    [3, 1, 6, 0],
+    [6, 0, 7, 0],
+    [1, 0, 8, 0],
+    [9, 0, 10, 1]
+  ],
+  "groups": [
+    {
+      "title": "Mesh Analysis Test",
+      "bounding": [30, 10, 970, 590],
+      "color": "#3F8A5E",
+      "font_size": 24
+    }
+  ],
+  "config": {},
+  "extra": {},
+  "version": 0.4
+}

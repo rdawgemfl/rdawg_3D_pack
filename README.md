@@ -68,6 +68,8 @@ pip install -e .[full]
 # Neural rendering capabilities
 pip install -e .[neural]
 
+**Note**: This option will build xformers from source to ensure CUDA 12.8 compatibility with PyTorch 2.9.0. The build process can take 10-30 minutes and requires proper CUDA 12.8 installation.
+
 # 3D reconstruction tools
 pip install -e .[reconstruction]
 ```

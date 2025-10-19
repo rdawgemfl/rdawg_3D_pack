@@ -1,0 +1,111 @@
+{
+  "last_node_id": 8,
+  "last_link_id": 7,
+  "nodes": {
+    "1": {
+      "inputs": {
+        "file_path": "custom_nodes/rdawg_3D_pack/test_models/test_cube.obj",
+        "load_texture": true,
+        "normalize": true,
+        "device": "auto"
+      },
+      "class_type": "RDAWG3DLoadModel",
+      "pos": [50, 50]
+    },
+    "2": {
+      "inputs": {
+        "mesh": ["1", 0],
+        "scale": 1.2,
+        "rotation_x": 45.0,
+        "rotation_y": 30.0,
+        "rotation_z": 15.0,
+        "translate_x": 0.0,
+        "translate_y": 0.0,
+        "translate_z": 0.0
+      },
+      "class_type": "RDAWG3DTransform",
+      "pos": [350, 50]
+    },
+    "3": {
+      "inputs": {
+        "mesh": ["2", 0],
+        "width": 512,
+        "height": 512,
+        "background_color": "#000000",
+        "mesh_color": "#FF6B6B",
+        "camera_distance": 2.0,
+        "elevation": 20.0,
+        "azimuth": 45.0
+      },
+      "class_type": "RDAWG3DMeshToImage",
+      "pos": [650, 50]
+    },
+    "4": {
+      "inputs": {
+        "images": ["3", 0],
+        "filename_prefix": "RDAWG_core_test_cube"
+      },
+      "class_type": "SaveImage",
+      "pos": [950, 50]
+    },
+    "5": {
+      "inputs": {
+        "file_path": "custom_nodes/rdawg_3D_pack/test_models/test_sphere.obj",
+        "load_texture": true,
+        "normalize": true,
+        "device": "auto"
+      },
+      "class_type": "RDAWG3DLoadModel",
+      "pos": [50, 250]
+    },
+    "6": {
+      "inputs": {
+        "vertices": [0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.5, 0.866, 0.0, 0.5, 0.433, 0.866],
+        "faces": [0, 1, 2, 0, 2, 3],
+        "device": "auto"
+      },
+      "class_type": "RDAWG3DCreateMesh",
+      "pos": [350, 250]
+    },
+    "7": {
+      "inputs": {
+        "mesh": ["6", 0],
+        "width": 512,
+        "height": 512,
+        "background_color": "#1a1a1a",
+        "mesh_color": "#4ECDC4",
+        "camera_distance": 2.5,
+        "elevation": 30.0,
+        "azimuth": 60.0
+      },
+      "class_type": "RDAWG3DMeshToImage",
+      "pos": [650, 250]
+    },
+    "8": {
+      "inputs": {
+        "images": ["7", 0],
+        "filename_prefix": "RDAWG_core_test_triangle"
+      },
+      "class_type": "SaveImage",
+      "pos": [950, 250]
+    }
+  },
+  "links": [
+    [1, 0, 2, 0],
+    [2, 0, 3, 0],
+    [3, 0, 4, 0],
+    [6, 0, 7, 0],
+    [7, 0, 8, 0]
+  ],
+  "groups": [
+    {
+      "title": "Core Nodes Test",
+      "bounding": [30, 10, 970, 350],
+      "color": "#3f789e",
+      "font_size": 24
+    }
+  ],
+  "config": {},
+  "extra": {},
+  "version": 0.4
+}

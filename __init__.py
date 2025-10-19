@@ -44,12 +44,53 @@ except ImportError:
 
 class RDAWG3DLoadModel:
     """Load 3D models from various formats with GPU acceleration"""
+    
+    @classmethod
+    def get_models_directory(cls):
+        """Get the directory where 3D models are stored"""
+        try:
+            import folder_paths
+            if hasattr(folder_paths, 'get_folder_paths'):
+                try:
+                    paths = folder_paths.get_folder_paths("3d_models")
+                    if paths:
+                        return paths[0]
+                except:
+                    pass
+            return os.path.join(folder_paths.get_input_directory(), "3d_models")
+        except:
+            comfy_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+            return os.path.join(comfy_dir, "input", "3d_models")
+    
+    @classmethod
+    def get_available_models(cls):
+        """Get list of available 3D model files"""
+        models_dir = cls.get_models_directory()
+        if not os.path.exists(models_dir):
+            try:
+                os.makedirs(models_dir, exist_ok=True)
+            except:
+                pass
+            return ["No models found - place files in input/3d_models/"]
+        
+        supported_extensions = ['.obj', '.ply', '.stl', '.off', '.gltf', '.glb', '.fbx', '.dae', '.3ds']
+        models = []
+        try:
+            for root, dirs, files in os.walk(models_dir):
+                for file in files:
+                    if any(file.lower().endswith(ext) for ext in supported_extensions):
+                        rel_path = os.path.relpath(os.path.join(root, file), models_dir)
+                        models.append(rel_path)
+        except Exception as e:
+            print(f"[RDAWG 3D Pack] Error scanning models directory: {e}")
+        
+        return sorted(models) if models else ["No models found - place files in input/3d_models/"]
 
     @classmethod
     def INPUT_TYPES(cls):
         return {
             "required": {
-                "file_path": ("STRING", {"default": "", "multiline": False, "dynamicPrompts": False}),
+                "model_file": (cls.get_available_models(), ),
                 "load_texture": ("BOOLEAN", {"default": True}),
                 "normalize": ("BOOLEAN", {"default": True}),
                 "device": (["auto", "cpu", "cuda"], {"default": "auto"}),
@@ -60,10 +101,23 @@ class RDAWG3DLoadModel:
     RETURN_NAMES = ("mesh", "info")
     FUNCTION = "load_3d_model"
     CATEGORY = "RDAWG 3D/Loaders"
+    
+    @classmethod
+    def IS_CHANGED(cls, model_file, **kwargs):
+        """Force refresh when model file changes"""
+        models_dir = cls.get_models_directory()
+        file_path = os.path.join(models_dir, model_file)
+        if os.path.exists(file_path):
+            return os.path.getmtime(file_path)
+        return float("nan")
 
-    def load_3d_model(self, file_path: str, load_texture: bool, normalize: bool, device: str):
-        if not file_path or not os.path.exists(file_path):
-            raise ValueError(f"File not found: {file_path}")
+    def load_3d_model(self, model_file: str, load_texture: bool, normalize: bool, device: str):
+        models_dir = self.get_models_directory()
+        file_path = os.path.join(models_dir, model_file)
+        
+        if not os.path.exists(file_path):
+            raise ValueError(f"File not found: {file_path}
+Place 3D models in: {models_dir}")
 
         try:
             device_to_use = "cuda" if device == "cuda" and torch.cuda.is_available() else "cpu"

@@ -9,7 +9,7 @@
         "normalize": true,
         "device": "auto"
       },
-      "class_type": "RDAWG3DLoadModel",
+      "type": "RDAWG3DLoadModel",
       "pos": [50, 50]
     },
     "2": {
@@ -19,7 +19,7 @@
         "preserve_boundaries": true,
         "method": "quadric"
       },
-      "class_type": "RDAWG3DSimplifyMesh",
+      "type": "RDAWG3DSimplifyMesh",
       "pos": [350, 50]
     },
     "3": {
@@ -33,7 +33,7 @@
         "elevation": 20.0,
         "azimuth": 45.0
       },
-      "class_type": "RDAWG3DMeshToImage",
+      "type": "RDAWG3DMeshToImage",
       "pos": [650, 50]
     },
     "4": {
@@ -41,7 +41,7 @@
         "images": ["3", 0],
         "filename_prefix": "RDAWG_simplified_mesh"
       },
-      "class_type": "SaveImage",
+      "type": "SaveImage",
       "pos": [950, 50]
     },
     "5": {
@@ -50,7 +50,7 @@
         "subdivisions": 2,
         "method": "loop"
       },
-      "class_type": "RDAWG3DSubdivideMesh",
+      "type": "RDAWG3DSubdivideMesh",
       "pos": [350, 200]
     },
     "6": {
@@ -64,7 +64,7 @@
         "elevation": 25.0,
         "azimuth": 60.0
       },
-      "class_type": "RDAWG3DMeshToImage",
+      "type": "RDAWG3DMeshToImage",
       "pos": [650, 200]
     },
     "7": {
@@ -72,7 +72,7 @@
         "images": ["6", 0],
         "filename_prefix": "RDAWG_subdivided_mesh"
       },
-      "class_type": "SaveImage",
+      "type": "SaveImage",
       "pos": [950, 200]
     },
     "8": {
@@ -82,7 +82,7 @@
         "lambda_factor": 0.5,
         "method": "taubin"
       },
-      "class_type": "RDAWG3DSmoothMesh",
+      "type": "RDAWG3DSmoothMesh",
       "pos": [350, 350]
     },
     "9": {
@@ -96,7 +96,7 @@
         "elevation": 15.0,
         "azimuth": 30.0
       },
-      "class_type": "RDAWG3DMeshToImage",
+      "type": "RDAWG3DMeshToImage",
       "pos": [650, 350]
     },
     "10": {
@@ -104,7 +104,7 @@
         "images": ["9", 0],
         "filename_prefix": "RDAWG_smoothed_mesh"
       },
-      "class_type": "SaveImage",
+      "type": "SaveImage",
       "pos": [950, 350]
     },
     "11": {
@@ -113,7 +113,7 @@
         "curvature_type": "mean",
         "radius": 0.1
       },
-      "class_type": "RDAWG3DComputeCurvature",
+      "type": "RDAWG3DComputeCurvature",
       "pos": [350, 500]
     },
     "12": {
@@ -127,7 +127,7 @@
         "elevation": 40.0,
         "azimuth": 75.0
       },
-      "class_type": "RDAWG3DMeshToImage",
+      "type": "RDAWG3DMeshToImage",
       "pos": [650, 500]
     }
   },

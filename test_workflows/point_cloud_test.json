@@ -9,7 +9,7 @@
         "normalize": true,
         "device": "auto"
       },
-      "class_type": "RDAWG3DLoadModel",
+      "type": "RDAWG3DLoadModel",
       "pos": [50, 50]
     },
     "2": {
@@ -20,7 +20,7 @@
         "include_colors": false,
         "method": "poisson"
       },
-      "class_type": "RDAWG3DMeshToPointCloud",
+      "type": "RDAWG3DMeshToPointCloud",
       "pos": [350, 50]
     },
     "3": {
@@ -30,7 +30,7 @@
         "voxel_size": 0.02,
         "target_points": 1000
       },
-      "class_type": "RDAWG3DDownsamplePointCloud",
+      "type": "RDAWG3DDownsamplePointCloud",
       "pos": [650, 50]
     },
     "4": {
@@ -41,7 +41,7 @@
         "alpha": 0.05,
         "radii": "0.01,0.02,0.04"
       },
-      "class_type": "RDAWG3DPointCloudToMesh",
+      "type": "RDAWG3DPointCloudToMesh",
       "pos": [950, 50]
     },
     "5": {
@@ -55,7 +55,7 @@
         "elevation": 20.0,
         "azimuth": 45.0
       },
-      "class_type": "RDAWG3DMeshToImage",
+      "type": "RDAWG3DMeshToImage",
       "pos": [1250, 50]
     },
     "6": {
@@ -63,7 +63,7 @@
         "images": ["5", 0],
         "filename_prefix": "RDAWG_pointcloud_reconstruction"
       },
-      "class_type": "SaveImage",
+      "type": "SaveImage",
       "pos": [1550, 50]
     },
     "7": {
@@ -72,7 +72,7 @@
         "estimate_normals": true,
         "device": "auto"
       },
-      "class_type": "RDAWG3DLoadPointCloud",
+      "type": "RDAWG3DLoadPointCloud",
       "pos": [50, 250]
     },
     "8": {
@@ -84,7 +84,7 @@
         "radius": 0.05,
         "min_points": 10
       },
-      "class_type": "RDAWG3DRemoveOutliers",
+      "type": "RDAWG3DRemoveOutliers",
       "pos": [350, 250]
     },
     "9": {
@@ -95,7 +95,7 @@
         "alpha": 0.03,
         "radii": "0.005,0.01,0.02"
       },
-      "class_type": "RDAWG3DPointCloudToMesh",
+      "type": "RDAWG3DPointCloudToMesh",
       "pos": [650, 250]
     },
     "10": {
@@ -109,7 +109,7 @@
         "elevation": 30.0,
         "azimuth": 60.0
       },
-      "class_type": "RDAWG3DMeshToImage",
+      "type": "RDAWG3DMeshToImage",
       "pos": [950, 250]
     },
     "11": {
@@ -117,7 +117,7 @@
         "images": ["10", 0],
         "filename_prefix": "RDAWG_pointcloud_cleaned"
       },
-      "class_type": "SaveImage",
+      "type": "SaveImage",
       "pos": [1250, 250]
     },
     "12": {
@@ -131,7 +131,7 @@
         "translate_y": 0.1,
         "translate_z": 0.0
       },
-      "class_type": "RDAWG3DTransformPointCloud",
+      "type": "RDAWG3DTransformPointCloud",
       "pos": [650, 450]
     },
     "13": {
@@ -142,7 +142,7 @@
         "alpha": 0.1,
         "radii": "0.02,0.04,0.08"
       },
-      "class_type": "RDAWG3DPointCloudToMesh",
+      "type": "RDAWG3DPointCloudToMesh",
       "pos": [950, 450]
     },
     "14": {
@@ -156,7 +156,7 @@
         "elevation": 25.0,
         "azimuth": 90.0
       },
-      "class_type": "RDAWG3DMeshToImage",
+      "type": "RDAWG3DMeshToImage",
       "pos": [1250, 450]
     }
   },

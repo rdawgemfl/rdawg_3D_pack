@@ -9,7 +9,7 @@
         "normalize": true,
         "device": "auto"
       },
-      "class_type": "RDAWG3DLoadModel",
+      "type": "RDAWG3DLoadModel",
       "pos": [50, 50]
     },
     "2": {
@@ -20,7 +20,7 @@
         "compute_quality_metrics": true,
         "compute_topology": true
       },
-      "class_type": "RDAWG3DAnalyzeMesh",
+      "type": "RDAWG3DAnalyzeMesh",
       "pos": [350, 50]
     },
     "3": {
@@ -29,7 +29,7 @@
         "box_type": "axis_aligned",
         "create_visualization": true
       },
-      "class_type": "RDAWG3DBoundingBox",
+      "type": "RDAWG3DBoundingBox",
       "pos": [350, 250]
     },
     "4": {
@@ -43,7 +43,7 @@
         "elevation": 20.0,
         "azimuth": 45.0
       },
-      "class_type": "RDAWG3DMeshToImage",
+      "type": "RDAWG3DMeshToImage",
       "pos": [650, 50]
     },
     "5": {
@@ -51,7 +51,7 @@
         "images": ["4", 0],
         "filename_prefix": "RDAWG_analysis_original"
       },
-      "class_type": "SaveImage",
+      "type": "SaveImage",
       "pos": [950, 50]
     },
     "6": {
@@ -65,7 +65,7 @@
         "elevation": 30.0,
         "azimuth": 60.0
       },
-      "class_type": "RDAWG3DMeshToImage",
+      "type": "RDAWG3DMeshToImage",
       "pos": [650, 250]
     },
     "7": {
@@ -73,7 +73,7 @@
         "images": ["6", 0],
         "filename_prefix": "RDAWG_analysis_bbox"
       },
-      "class_type": "SaveImage",
+      "type": "SaveImage",
       "pos": [950, 250]
     },
     "8": {
@@ -82,7 +82,7 @@
         "feature_type": "vertex_curvature",
         "radius": 0.1
       },
-      "class_type": "RDAWG3DExtractFeatures",
+      "type": "RDAWG3DExtractFeatures",
       "pos": [350, 450]
     },
     "9": {
@@ -92,7 +92,7 @@
         "normalize": true,
         "device": "auto"
       },
-      "class_type": "RDAWG3DLoadModel",
+      "type": "RDAWG3DLoadModel",
       "pos": [50, 350]
     },
     "10": {
@@ -101,7 +101,7 @@
         "distance_type": "self_hausdorff",
         "mesh_b": ["9", 0]
       },
-      "class_type": "RDAWG3DComputeDistance",
+      "type": "RDAWG3DComputeDistance",
       "pos": [650, 450]
     }
   },

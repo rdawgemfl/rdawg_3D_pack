@@ -42,7 +42,7 @@
         "cnr_id": "rdawg_3D_pack",
         "ver": "1.0.0",
         "Node name for S&R": "RDAWG3DCreateMesh",
-        "aux_id": "rdawgemfl/rdawg_3D_pack"
+        "aux_id": "rdawgemfl/rdawg-3d-pack"
       },
       "widgets_values": [
         "[0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.5, 0.866, 0.0, 0.5, 0.433, 0.866]",
@@ -101,7 +101,7 @@
         "cnr_id": "rdawg_3D_pack",
         "ver": "1.0.0",
         "Node name for S&R": "RDAWG3DMeshToPointCloud",
-        "aux_id": "rdawgemfl/rdawg_3D_pack"
+        "aux_id": "rdawgemfl/rdawg-3d-pack"
       },
       "widgets_values": [
         2000,
@@ -161,7 +161,7 @@
         "cnr_id": "rdawg_3D_pack",
         "ver": "1.0.0",
         "Node name for S&R": "RDAWG3DPointCloudToMesh",
-        "aux_id": "rdawgemfl/rdawg_3D_pack"
+        "aux_id": "rdawgemfl/rdawg-3d-pack"
       },
       "widgets_values": [
         "poisson",
@@ -239,7 +239,7 @@
         "cnr_id": "rdawg_3D_pack",
         "ver": "1.0.0",
         "Node name for S&R": "RDAWG3DMeshToImage",
-        "aux_id": "rdawgemfl/rdawg_3D_pack"
+        "aux_id": "rdawgemfl/rdawg-3d-pack"
       },
       "widgets_values": [
         512,
@@ -350,7 +350,7 @@
         "cnr_id": "rdawg_3D_pack",
         "ver": "1.0.0",
         "Node name for S&R": "RDAWG3DMeshToImage",
-        "aux_id": "rdawgemfl/rdawg_3D_pack"
+        "aux_id": "rdawgemfl/rdawg-3d-pack"
       },
       "widgets_values": [
         512,

@@ -48,7 +48,7 @@
         "cnr_id": "rdawg_3D_pack",
         "ver": "1.0.0",
         "Node name for S&R": "RDAWG3DLoadModel",
-        "aux_id": "rdawgemfl/rdawg_3D_pack"
+        "aux_id": "rdawgemfl/rdawg-3d-pack"
       },
       "widgets_values": [
         "test_models/test_high_poly.obj",
@@ -102,7 +102,7 @@
         "cnr_id": "rdawg_3D_pack",
         "ver": "1.0.0",
         "Node name for S&R": "RDAWG3DSimplifyMesh",
-        "aux_id": "rdawgemfl/rdawg_3D_pack"
+        "aux_id": "rdawgemfl/rdawg-3d-pack"
       },
       "widgets_values": [
         3000,
@@ -155,7 +155,7 @@
         "cnr_id": "rdawg_3D_pack",
         "ver": "1.0.0",
         "Node name for S&R": "RDAWG3DSmoothMesh",
-        "aux_id": "rdawgemfl/rdawg_3D_pack"
+        "aux_id": "rdawgemfl/rdawg-3d-pack"
       },
       "widgets_values": [
         2,
@@ -232,7 +232,7 @@
         "cnr_id": "rdawg_3D_pack",
         "ver": "1.0.0",
         "Node name for S&R": "RDAWG3DMeshToImage",
-        "aux_id": "rdawgemfl/rdawg_3D_pack"
+        "aux_id": "rdawgemfl/rdawg-3d-pack"
       },
       "widgets_values": [
         512,
@@ -313,7 +313,7 @@
         "cnr_id": "rdawg_3D_pack",
         "ver": "1.0.0",
         "Node name for S&R": "RDAWG3DSubdivideMesh",
-        "aux_id": "rdawgemfl/rdawg_3D_pack"
+        "aux_id": "rdawgemfl/rdawg-3d-pack"
       },
       "widgets_values": [
         1,

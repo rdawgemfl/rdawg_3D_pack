@@ -48,7 +48,7 @@
         "cnr_id": "rdawg_3D_pack",
         "ver": "1.0.0",
         "Node name for S&R": "RDAWG3DLoadModel",
-        "aux_id": "rdawgemfl/rdawg_3D_pack"
+        "aux_id": "rdawgemfl/rdawg-3d-pack"
       },
       "widgets_values": [
         "test_models/test_high_poly.obj",
@@ -108,7 +108,7 @@
         "cnr_id": "rdawg_3D_pack",
         "ver": "1.0.0",
         "Node name for S&R": "RDAWG3DAnalyzeMesh",
-        "aux_id": "rdawgemfl/rdawg_3D_pack"
+        "aux_id": "rdawgemfl/rdawg-3d-pack"
       },
       "widgets_values": [true, true, true, true]
     },
@@ -157,7 +157,7 @@
         "cnr_id": "rdawg_3D_pack",
         "ver": "1.0.0",
         "Node name for S&R": "RDAWG3DBoundingBox",
-        "aux_id": "rdawgemfl/rdawg_3D_pack"
+        "aux_id": "rdawgemfl/rdawg-3d-pack"
       },
       "widgets_values": ["axis_aligned", true]
     },
@@ -230,7 +230,7 @@
         "cnr_id": "rdawg_3D_pack",
         "ver": "1.0.0",
         "Node name for S&R": "RDAWG3DMeshToImage",
-        "aux_id": "rdawgemfl/rdawg_3D_pack"
+        "aux_id": "rdawgemfl/rdawg-3d-pack"
       },
       "widgets_values": [
         512,
@@ -341,7 +341,7 @@
         "cnr_id": "rdawg_3D_pack",
         "ver": "1.0.0",
         "Node name for S&R": "RDAWG3DMeshToImage",
-        "aux_id": "rdawgemfl/rdawg_3D_pack"
+        "aux_id": "rdawgemfl/rdawg-3d-pack"
       },
       "widgets_values": [
         512,

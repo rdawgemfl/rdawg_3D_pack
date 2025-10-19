@@ -42,7 +42,7 @@
         "cnr_id": "rdawg_3D_pack",
         "ver": "1.0.0",
         "Node name for S&R": "RDAWG3DLoadPointCloud",
-        "aux_id": "rdawgemfl/rdawg_3D_pack"
+        "aux_id": "rdawgemfl/rdawg-3d-pack"
       },
       "widgets_values": [
         "test_models/test_sphere_points.ply",
@@ -107,7 +107,7 @@
         "cnr_id": "rdawg_3D_pack",
         "ver": "1.0.0",
         "Node name for S&R": "RDAWG3DRemoveOutliers",
-        "aux_id": "rdawgemfl/rdawg_3D_pack"
+        "aux_id": "rdawgemfl/rdawg-3d-pack"
       },
       "widgets_values": [
         "statistical",
@@ -162,7 +162,7 @@
         "cnr_id": "rdawg_3D_pack",
         "ver": "1.0.0",
         "Node name for S&R": "RDAWG3DDownsamplePointCloud",
-        "aux_id": "rdawgemfl/rdawg_3D_pack"
+        "aux_id": "rdawgemfl/rdawg-3d-pack"
       },
       "widgets_values": [
         "voxel",
@@ -221,7 +221,7 @@
         "cnr_id": "rdawg_3D_pack",
         "ver": "1.0.0",
         "Node name for S&R": "RDAWG3DPointCloudToMesh",
-        "aux_id": "rdawgemfl/rdawg_3D_pack"
+        "aux_id": "rdawgemfl/rdawg-3d-pack"
       },
       "widgets_values": [
         "poisson",
@@ -299,7 +299,7 @@
         "cnr_id": "rdawg_3D_pack",
         "ver": "1.0.0",
         "Node name for S&R": "RDAWG3DMeshToImage",
-        "aux_id": "rdawgemfl/rdawg_3D_pack"
+        "aux_id": "rdawgemfl/rdawg-3d-pack"
       },
       "widgets_values": [
         512,
@@ -410,7 +410,7 @@
         "cnr_id": "rdawg_3D_pack",
         "ver": "1.0.0",
         "Node name for S&R": "RDAWG3DTransformPointCloud",
-        "aux_id": "rdawgemfl/rdawg_3D_pack"
+        "aux_id": "rdawgemfl/rdawg-3d-pack"
       },
       "widgets_values": [
         1.5,

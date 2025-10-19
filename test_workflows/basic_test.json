@@ -48,7 +48,7 @@
         "cnr_id": "rdawg_3D_pack",
         "ver": "1.0.0",
         "Node name for S&R": "RDAWG3DLoadModel",
-        "aux_id": "rdawgemfl/rdawg_3D_pack"
+        "aux_id": "rdawgemfl/rdawg-3d-pack"
       },
       "widgets_values": [
         "test_models/test_cube.obj",
@@ -126,7 +126,7 @@
         "cnr_id": "rdawg_3D_pack",
         "ver": "1.0.0",
         "Node name for S&R": "RDAWG3DTransform",
-        "aux_id": "rdawgemfl/rdawg_3D_pack"
+        "aux_id": "rdawgemfl/rdawg-3d-pack"
       },
       "widgets_values": [1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
     },
@@ -199,7 +199,7 @@
         "cnr_id": "rdawg_3D_pack",
         "ver": "1.0.0",
         "Node name for S&R": "RDAWG3DMeshToImage",
-        "aux_id": "rdawgemfl/rdawg_3D_pack"
+        "aux_id": "rdawgemfl/rdawg-3d-pack"
       },
       "widgets_values": [512, 512, "#000000", "#FF6B6B", 2.0, 20.0, 45.0]
     },

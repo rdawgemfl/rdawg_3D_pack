@@ -404,7 +404,29 @@ class RDAWG3DMeshToImage:
 
         return (image_tensor,)
 
-# Node mappings
+# Import additional node modules
+try:
+    from . import mesh_analysis
+    MESH_ANALYSIS_AVAILABLE = True
+except ImportError:
+    MESH_ANALYSIS_AVAILABLE = False
+    print("[RDAWG 3D Pack] Mesh analysis module not available")
+
+try:
+    from . import mesh_processing
+    MESH_PROCESSING_AVAILABLE = True
+except ImportError:
+    MESH_PROCESSING_AVAILABLE = False
+    print("[RDAWG 3D Pack] Mesh processing module not available")
+
+try:
+    from . import point_cloud
+    POINT_CLOUD_AVAILABLE = True
+except ImportError:
+    POINT_CLOUD_AVAILABLE = False
+    print("[RDAWG 3D Pack] Point cloud module not available")
+
+# Core node mappings
 NODE_CLASS_MAPPINGS = {
     "RDAWG3DLoadModel": RDAWG3DLoadModel,
     "RDAWG3DCreateMesh": RDAWG3DCreateMesh,
@@ -412,6 +434,37 @@ NODE_CLASS_MAPPINGS = {
     "RDAWG3DMeshToImage": RDAWG3DMeshToImage,
 }
 
+# Add mesh analysis nodes if available
+if MESH_ANALYSIS_AVAILABLE:
+    NODE_CLASS_MAPPINGS.update({
+        "RDAWG3DAnalyzeMesh": mesh_analysis.RDAWG3DAnalyzeMesh,
+        "RDAWG3DComputeDistance": mesh_analysis.RDAWG3DComputeDistance,
+        "RDAWG3DBoundingBox": mesh_analysis.RDAWG3DBoundingBox,
+        "RDAWG3DExtractFeatures": mesh_analysis.RDAWG3DExtractFeatures,
+    })
+
+# Add mesh processing nodes if available
+if MESH_PROCESSING_AVAILABLE:
+    NODE_CLASS_MAPPINGS.update({
+        "RDAWG3DSimplifyMesh": mesh_processing.RDAWG3DSimplifyMesh,
+        "RDAWG3DSubdivideMesh": mesh_processing.RDAWG3DSubdivideMesh,
+        "RDAWG3DSmoothMesh": mesh_processing.RDAWG3DSmoothMesh,
+        "RDAWG3DRemeshUniform": mesh_processing.RDAWG3DRemeshUniform,
+        "RDAWG3DComputeCurvature": mesh_processing.RDAWG3DComputeCurvature,
+    })
+
+# Add point cloud nodes if available
+if POINT_CLOUD_AVAILABLE:
+    NODE_CLASS_MAPPINGS.update({
+        "RDAWG3DMeshToPointCloud": point_cloud.RDAWG3DMeshToPointCloud,
+        "RDAWG3DLoadPointCloud": point_cloud.RDAWG3DLoadPointCloud,
+        "RDAWG3DDownsamplePointCloud": point_cloud.RDAWG3DDownsamplePointCloud,
+        "RDAWG3DRemoveOutliers": point_cloud.RDAWG3DRemoveOutliers,
+        "RDAWG3DPointCloudToMesh": point_cloud.RDAWG3DPointCloudToMesh,
+        "RDAWG3DTransformPointCloud": point_cloud.RDAWG3DTransformPointCloud,
+    })
+
+# Core display name mappings
 NODE_DISPLAY_NAME_MAPPINGS = {
     "RDAWG3DLoadModel": "🔷 Load 3D Model (RDAWG+Open3D)",
     "RDAWG3DCreateMesh": "🔷 Create 3D Mesh (RDAWG+Open3D)",
@@ -419,9 +472,39 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "RDAWG3DMeshToImage": "🔷 3D to Image (RDAWG+Open3D)",
 }
 
+# Add mesh analysis display names if available
+if MESH_ANALYSIS_AVAILABLE:
+    NODE_DISPLAY_NAME_MAPPINGS.update({
+        "RDAWG3DAnalyzeMesh": "🔷 Analyze Mesh (RDAWG)",
+        "RDAWG3DComputeDistance": "🔷 Compute Distance (RDAWG)",
+        "RDAWG3DBoundingBox": "🔷 Bounding Box (RDAWG)",
+        "RDAWG3DExtractFeatures": "🔷 Extract Features (RDAWG)",
+    })
+
+# Add mesh processing display names if available
+if MESH_PROCESSING_AVAILABLE:
+    NODE_DISPLAY_NAME_MAPPINGS.update({
+        "RDAWG3DSimplifyMesh": "🔷 Simplify Mesh (RDAWG)",
+        "RDAWG3DSubdivideMesh": "🔷 Subdivide Mesh (RDAWG)",
+        "RDAWG3DSmoothMesh": "🔷 Smooth Mesh (RDAWG)",
+        "RDAWG3DRemeshUniform": "🔷 Remesh Uniform (RDAWG)",
+        "RDAWG3DComputeCurvature": "🔷 Compute Curvature (RDAWG)",
+    })
+
+# Add point cloud display names if available
+if POINT_CLOUD_AVAILABLE:
+    NODE_DISPLAY_NAME_MAPPINGS.update({
+        "RDAWG3DMeshToPointCloud": "🔷 Mesh to Point Cloud (RDAWG)",
+        "RDAWG3DLoadPointCloud": "🔷 Load Point Cloud (RDAWG)",
+        "RDAWG3DDownsamplePointCloud": "🔷 Downsample Point Cloud (RDAWG)",
+        "RDAWG3DRemoveOutliers": "🔷 Remove Outliers (RDAWG)",
+        "RDAWG3DPointCloudToMesh": "🔷 Point Cloud to Mesh (RDAWG)",
+        "RDAWG3DTransformPointCloud": "🔷 Transform Point Cloud (RDAWG)",
+    })
+
 WEB_DIRECTORY = "./js"
 
-print(f"[RDAWG 3D Pack] Loaded {len(NODE_CLASS_MAPPINGS)} nodes")
+print(f"[RDAWG 3D Pack] Loaded {len(NODE_CLASS_MAPPINGS)} nodes (19 total)")
 print(f"[RDAWG 3D Pack] Enhanced with Open3D {o3d.__version__ if OPEN3D_AVAILABLE else 'N/A'}")
 print(f"[RDAWG 3D Pack] CUDA 12.8 + PyTorch 2.9.0 Optimized")
 

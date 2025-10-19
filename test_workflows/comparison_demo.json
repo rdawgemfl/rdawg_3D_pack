@@ -14,33 +14,25 @@
         {
           "name": "file_path",
           "type": "STRING",
-          "widget": {
-            "name": "file_path"
-          },
+          "widget": { "name": "file_path" },
           "link": null
         },
         {
           "name": "load_texture",
           "type": "BOOLEAN",
-          "widget": {
-            "name": "load_texture"
-          },
+          "widget": { "name": "load_texture" },
           "link": null
         },
         {
           "name": "normalize",
           "type": "BOOLEAN",
-          "widget": {
-            "name": "normalize"
-          },
+          "widget": { "name": "normalize" },
           "link": null
         },
         {
           "name": "device",
           "type": "STRING",
-          "widget": {
-            "name": "device"
-          },
+          "widget": { "name": "device" },
           "link": null
         }
       ],
@@ -48,7 +40,7 @@
         {
           "name": "MESH",
           "type": "MESH",
-          "links": [1],
+          "links": [1, 4],
           "slot_index": 0
         }
       ],
@@ -59,7 +51,7 @@
         "aux_id": "rdawgemfl/rdawg_3D_pack"
       },
       "widgets_values": [
-        "custom_nodes/rdawg_3D_pack/test_models/test_cube.obj",
+        "test_models/test_high_poly.obj",
         true,
         true,
         "auto"
@@ -67,7 +59,7 @@
     },
     {
       "id": 2,
-      "type": "RDAWG3DTransform",
+      "type": "RDAWG3DSimplifyMesh",
       "pos": [350, 50],
       "size": [210, 46],
       "flags": {},
@@ -80,59 +72,21 @@
           "link": 1
         },
         {
-          "name": "scale",
-          "type": "FLOAT",
-          "widget": {
-            "name": "scale"
-          },
+          "name": "target_triangles",
+          "type": "INT",
+          "widget": { "name": "target_triangles" },
           "link": null
         },
         {
-          "name": "rotation_x",
-          "type": "FLOAT",
-          "widget": {
-            "name": "rotation_x"
-          },
+          "name": "preserve_boundaries",
+          "type": "BOOLEAN",
+          "widget": { "name": "preserve_boundaries" },
           "link": null
         },
         {
-          "name": "rotation_y",
-          "type": "FLOAT",
-          "widget": {
-            "name": "rotation_y"
-          },
-          "link": null
-        },
-        {
-          "name": "rotation_z",
-          "type": "FLOAT",
-          "widget": {
-            "name": "rotation_z"
-          },
-          "link": null
-        },
-        {
-          "name": "translate_x",
-          "type": "FLOAT",
-          "widget": {
-            "name": "translate_x"
-          },
-          "link": null
-        },
-        {
-          "name": "translate_y",
-          "type": "FLOAT",
-          "widget": {
-            "name": "translate_y"
-          },
-          "link": null
-        },
-        {
-          "name": "translate_z",
-          "type": "FLOAT",
-          "widget": {
-            "name": "translate_z"
-          },
+          "name": "method",
+          "type": "STRING",
+          "widget": { "name": "method" },
           "link": null
         }
       ],
@@ -147,17 +101,13 @@
       "properties": {
         "cnr_id": "rdawg_3D_pack",
         "ver": "1.0.0",
-        "Node name for S&R": "RDAWG3DTransform",
+        "Node name for S&R": "RDAWG3DSimplifyMesh",
         "aux_id": "rdawgemfl/rdawg_3D_pack"
       },
       "widgets_values": [
-        1.2,
-        45.0,
-        30.0,
-        15.0,
-        0.0,
-        0.0,
-        0.0
+        1500,
+        true,
+        "quadric"
       ]
     },
     {
@@ -177,57 +127,43 @@
         {
           "name": "width",
           "type": "INT",
-          "widget": {
-            "name": "width"
-          },
+          "widget": { "name": "width" },
           "link": null
         },
         {
           "name": "height",
           "type": "INT",
-          "widget": {
-            "name": "height"
-          },
+          "widget": { "name": "height" },
           "link": null
         },
         {
           "name": "background_color",
           "type": "STRING",
-          "widget": {
-            "name": "background_color"
-          },
+          "widget": { "name": "background_color" },
           "link": null
         },
         {
           "name": "mesh_color",
           "type": "STRING",
-          "widget": {
-            "name": "mesh_color"
-          },
+          "widget": { "name": "mesh_color" },
           "link": null
         },
         {
           "name": "camera_distance",
           "type": "FLOAT",
-          "widget": {
-            "name": "camera_distance"
-          },
+          "widget": { "name": "camera_distance" },
           "link": null
         },
         {
           "name": "elevation",
           "type": "FLOAT",
-          "widget": {
-            "name": "elevation"
-          },
+          "widget": { "name": "elevation" },
           "link": null
         },
         {
           "name": "azimuth",
           "type": "FLOAT",
-          "widget": {
-            "name": "azimuth"
-          },
+          "widget": { "name": "azimuth" },
           "link": null
         }
       ],
@@ -272,9 +208,7 @@
         {
           "name": "filename_prefix",
           "type": "STRING",
-          "widget": {
-            "name": "filename_prefix"
-          },
+          "widget": { "name": "filename_prefix" },
           "link": null
         }
       ],
@@ -285,49 +219,32 @@
         "Node name for S&R": "SaveImage",
         "aux_id": "comfy-org/comfyui-core"
       },
-      "widgets_values": [
-        "RDAWG_core_test_cube"
-      ]
+      "widgets_values": ["RDAWG_simplified"]
     },
     {
       "id": 5,
-      "type": "RDAWG3DLoadModel",
-      "pos": [50, 250],
+      "type": "RDAWG3DSubdivideMesh",
+      "pos": [350, 200],
       "size": [210, 46],
       "flags": {},
       "order": 4,
       "mode": 0,
       "inputs": [
         {
-          "name": "file_path",
+          "name": "mesh",
+          "type": "MESH",
+          "link": 1
+        },
+        {
+          "name": "subdivisions",
+          "type": "INT",
+          "widget": { "name": "subdivisions" },
+          "link": null
+        },
+        {
+          "name": "method",
           "type": "STRING",
-          "widget": {
-            "name": "file_path"
-          },
-          "link": null
-        },
-        {
-          "name": "load_texture",
-          "type": "BOOLEAN",
-          "widget": {
-            "name": "load_texture"
-          },
-          "link": null
-        },
-        {
-          "name": "normalize",
-          "type": "BOOLEAN",
-          "widget": {
-            "name": "normalize"
-          },
-          "link": null
-        },
-        {
-          "name": "device",
-          "type": "STRING",
-          "widget": {
-            "name": "device"
-          },
+          "widget": { "name": "method" },
           "link": null
         }
       ],
@@ -335,61 +252,79 @@
         {
           "name": "MESH",
           "type": "MESH",
-          "links": null,
+          "links": [5],
           "slot_index": 0
         }
       ],
       "properties": {
         "cnr_id": "rdawg_3D_pack",
         "ver": "1.0.0",
-        "Node name for S&R": "RDAWG3DLoadModel",
+        "Node name for S&R": "RDAWG3DSubdivideMesh",
         "aux_id": "rdawgemfl/rdawg_3D_pack"
       },
-      "widgets_values": [
-        "custom_nodes/rdawg_3D_pack/test_models/test_sphere.obj",
-        true,
-        true,
-        "auto"
-      ]
+      "widgets_values": [2, "loop"]
     },
     {
       "id": 6,
-      "type": "RDAWG3DCreateMesh",
-      "pos": [350, 250],
+      "type": "RDAWG3DMeshToImage",
+      "pos": [650, 200],
       "size": [210, 46],
       "flags": {},
       "order": 5,
       "mode": 0,
       "inputs": [
         {
-          "name": "vertices",
-          "type": "STRING",
-          "widget": {
-            "name": "vertices"
-          },
+          "name": "mesh",
+          "type": "MESH",
+          "link": 5
+        },
+        {
+          "name": "width",
+          "type": "INT",
+          "widget": { "name": "width" },
           "link": null
         },
         {
-          "name": "faces",
-          "type": "STRING",
-          "widget": {
-            "name": "faces"
-          },
+          "name": "height",
+          "type": "INT",
+          "widget": { "name": "height" },
           "link": null
         },
         {
-          "name": "device",
+          "name": "background_color",
           "type": "STRING",
-          "widget": {
-            "name": "device"
-          },
+          "widget": { "name": "background_color" },
+          "link": null
+        },
+        {
+          "name": "mesh_color",
+          "type": "STRING",
+          "widget": { "name": "mesh_color" },
+          "link": null
+        },
+        {
+          "name": "camera_distance",
+          "type": "FLOAT",
+          "widget": { "name": "camera_distance" },
+          "link": null
+        },
+        {
+          "name": "elevation",
+          "type": "FLOAT",
+          "widget": { "name": "elevation" },
+          "link": null
+        },
+        {
+          "name": "azimuth",
+          "type": "FLOAT",
+          "widget": { "name": "azimuth" },
           "link": null
         }
       ],
       "outputs": [
         {
-          "name": "MESH",
-          "type": "MESH",
+          "name": "IMAGE",
+          "type": "IMAGE",
           "links": [6],
           "slot_index": 0
         }
@@ -397,83 +332,103 @@
       "properties": {
         "cnr_id": "rdawg_3D_pack",
         "ver": "1.0.0",
-        "Node name for S&R": "RDAWG3DCreateMesh",
+        "Node name for S&R": "RDAWG3DMeshToImage",
         "aux_id": "rdawgemfl/rdawg_3D_pack"
       },
       "widgets_values": [
-        "[0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.5, 0.866, 0.0, 0.5, 0.433, 0.866]",
-        "[0, 1, 2, 0, 2, 3]",
-        "auto"
+        512,
+        512,
+        "#0a0a0a",
+        "#4ECDC4",
+        2.5,
+        30.0,
+        60.0
       ]
     },
     {
       "id": 7,
-      "type": "RDAWG3DMeshToImage",
-      "pos": [650, 250],
+      "type": "SaveImage",
+      "pos": [950, 200],
       "size": [210, 46],
       "flags": {},
       "order": 6,
       "mode": 0,
       "inputs": [
         {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 6
+        },
+        {
+          "name": "filename_prefix",
+          "type": "STRING",
+          "widget": { "name": "filename_prefix" },
+          "link": null
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.26",
+        "Node name for S&R": "SaveImage",
+        "aux_id": "comfy-org/comfyui-core"
+      },
+      "widgets_values": ["RDAWG_subdivided"]
+    },
+    {
+      "id": 8,
+      "type": "RDAWG3DMeshToImage",
+      "pos": [950, 200],
+      "size": [210, 46],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
           "name": "mesh",
           "type": "MESH",
-          "link": 6
+          "link": 1
         },
         {
           "name": "width",
           "type": "INT",
-          "widget": {
-            "name": "width"
-          },
+          "widget": { "name": "width" },
           "link": null
         },
         {
           "name": "height",
           "type": "INT",
-          "widget": {
-            "name": "height"
-          },
+          "widget": { "name": "height" },
           "link": null
         },
         {
           "name": "background_color",
           "type": "STRING",
-          "widget": {
-            "name": "background_color"
-          },
+          "widget": { "name": "background_color" },
           "link": null
         },
         {
           "name": "mesh_color",
           "type": "STRING",
-          "widget": {
-            "name": "mesh_color"
-          },
+          "widget": { "name": "mesh_color" },
           "link": null
         },
         {
           "name": "camera_distance",
           "type": "FLOAT",
-          "widget": {
-            "name": "camera_distance"
-          },
+          "widget": { "name": "camera_distance" },
           "link": null
         },
         {
           "name": "elevation",
           "type": "FLOAT",
-          "widget": {
-            "name": "elevation"
-          },
+          "widget": { "name": "elevation" },
           "link": null
         },
         {
           "name": "azimuth",
           "type": "FLOAT",
-          "widget": {
-            "name": "azimuth"
-          },
+          "widget": { "name": "azimuth" },
           "link": null
         }
       ],
@@ -495,59 +450,28 @@
         512,
         512,
         "#1a1a1a",
-        "#4ECDC4",
-        2.5,
-        30.0,
-        60.0
-      ]
-    },
-    {
-      "id": 8,
-      "type": "SaveImage",
-      "pos": [950, 250],
-      "size": [210, 46],
-      "flags": {},
-      "order": 7,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "images",
-          "type": "IMAGE",
-          "link": 7
-        },
-        {
-          "name": "filename_prefix",
-          "type": "STRING",
-          "widget": {
-            "name": "filename_prefix"
-          },
-          "link": null
-        }
-      ],
-      "outputs": [],
-      "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.3.26",
-        "Node name for S&R": "SaveImage",
-        "aux_id": "comfy-org/comfyui-core"
-      },
-      "widgets_values": [
-        "RDAWG_core_test_triangle"
+        "#FFD93D",
+        2.0,
+        25.0,
+        90.0
       ]
     }
-  },
+  ],
   "links": [
     [1, 1, 0, 2, 0, "MESH"],
     [2, 2, 0, 3, 0, "MESH"],
     [3, 3, 0, 4, 0, "IMAGE"],
-    [6, 6, 0, 7, 0, "MESH"],
-    [7, 7, 0, 8, 0, "IMAGE"]
+    [4, 1, 0, 5, 0, "MESH"],
+    [5, 5, 0, 6, 0, "MESH"],
+    [6, 6, 0, 7, 0, "IMAGE"],
+    [7, 1, 0, 8, 0, "MESH"],
+    [8, 8, 0, 4, 1, "IMAGE"]
   ],
   "groups": [
     {
-      "title": "Core Nodes Test",
-      "bounding": [30, 10, 970, 350],
-      "color": "#3f789e",
+      "title": "Processing Methods Comparison",
+      "bounding": [30, 10, 970, 300],
+      "color": "#8A3F8A",
       "font_size": 24
     }
   ],

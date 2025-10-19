@@ -81,7 +81,7 @@ class RDAWG3DLoadPointCloud:
     def INPUT_TYPES(cls):
         return {
             "required": {
-                "file_path": ("STRING", {"default": "", "multiline": False}),
+                "file_path": ("STRING", {"default": "", "multiline": False, "dynamicPrompts": False}),
                 "estimate_normals": ("BOOLEAN", {"default": True}),
                 "device": (["auto", "cpu", "cuda"], {"default": "auto"}),
             }
